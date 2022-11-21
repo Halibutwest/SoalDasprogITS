@@ -1,0 +1,80 @@
+//0. Dina membuka toko Pastry & bakery. Dia perlu program komputer untuk menyimpan daftar makanan, keterangan dan harganya (harga maks Rp 100.000).
+//Program bisa mencetak seluruh makanan dan harga. Selain itu, jika pengunjung memiliki sejumlah uang (maks Rp. 100.000),
+//Dina ingin program dapat memberikan pilihan daftar makanan yang dapat dibeli beserta kembaliannya, beri pesan jika tidak ada record.
+//Dia ingin program tetap berjalan kecuali jika dia memilih menu keluar. Bantulah Dina membuat program beserta fungsi/prosedurnya!
+//Contoh daftar makanan, keterangan, dan harga:
+//Roti gulung - roti digulung - Rp 20.000
+//Muffin berry - muffin buah berry - Rp 10.000
+//Roti pisang - roti diisi pisang - Rp 15.000
+//Danish pastry - sweet pastry - Rp 25.000
+//Croissant - banyak mentega - Rp 17.000
+//Uang Customer: 18000
+//Roti pisang Rp 15.000 - kembalian Rp 3.000
+//Croissant Rp 17.000 - kembalian Rp 1.000
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+struct daftar{
+    char nama[20], keterangan[20];
+    int harga;
+};
+struct komparasi{
+int hasil;
+};
+int main(){
+    int a,b,i,j,v,harga,uang;
+    char nama[20], keterangan[20];
+    printf("-------------------------------------\n");
+    printf("--------Program Kasir Makanan--------\n");
+    printf("-------------------------------------\n");
+    printf("Tekan 2 untuk melanjutkan program\n");
+    scanf("%d", &b);
+    printf("\n");
+    do {
+    printf("jumlah makanan yang akan di input\n");
+    scanf("%d", &a);
+        struct daftar M[a];
+        for(i=0; i < a; i++){
+        printf ("\n");
+        printf("nama makanan\n");
+        scanf("%s", M[i].nama);
+        printf ("\n");
+        printf("keterangan\n");
+        scanf("%s", M[i].keterangan);
+        printf ("\n");
+        printf("Harga makanan\n");
+        scanf("%d", &M[i].harga);
+    }
+    printf ("\n");
+    printf("--------------------------\n");
+    printf("------Daftar Makanan------\n");
+    printf("--------------------------\n");
+    for(j=0; j < a; j++){
+        printf("%s-%s-%d\n", M[j].nama,M[j].keterangan,M[j].harga);
+    }
+    printf ("\n");
+    printf("masukan uang Rp.\n");
+    scanf("%d", &uang);
+    struct komparasi C[a];
+    for(i=0; i < a; i++){
+         C[i].hasil = uang - M[i].harga;
+    }
+    printf("----------------------------------------\n");
+    printf("--Anda dapat Membeli menu berikut ini:--\n");
+    printf("----------------------------------------\n");
+    printf("Uang Anda Rp.%d\n", uang);
+    for(i=0; i < a ; i++){
+        if(C[i].hasil >= 0){printf(".%s--%d--kembalian Rp. %d\n", M[i].nama,M[i].harga, C[i].hasil);}
+        else {printf("maaf uang anda tidak cukup untuk membeli %s, Rp. %d\n", M[i].nama, M[i].harga);}
+        }
+    printf ("\n");
+    printf ("----------------------\n");
+    printf ("-----Pilihan Menu-----\n");
+    printf ("----------------------\n");
+    printf("1 untuk keluar\n");
+    printf("2 untuk melanjutkan input\n");
+    scanf("%d", &b);
+    printf("Terimakasih....");
+    } while (b == 2);
+    exit(1);
+}
